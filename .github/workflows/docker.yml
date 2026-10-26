@@ -25,6 +25,11 @@ jobs:
       - name: Build the image
         run: docker build -t "$IMAGE:$GITHUB_SHA" .
       # List what `COPY . .` put in the image. The contents of `.git` and `__pycache__` are hidden.
+
+      - name: Smoke test the image
+        run: docker run --rm "$IMAGE:$GITHUB_SHA" python --version
+
+      
       - name: Show the files in the image
         run: docker run --rm "$IMAGE:$GITHUB_SHA" find . \( -name .git -o -name __pycache__ \) -prune -print -o -print
       # TODO (Task 2): log in to the registry, tag the image with the branch name, and push both tags.
