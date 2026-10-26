@@ -1,4 +1,4 @@
-uv run ruff check --fix
+uv run ruff check --fix .
 
 import json
 import pathlib
